@@ -52,7 +52,6 @@ public class PublicacionServiceImp implements PublicacionServicio {
     
     @Override
     public List<PublicacionDTO> obtenerPublicaciones(){
-        
         List<Publicacion> publicaciones = publicacionRepositorio.findAll();
         /*
         A ESTA LISTA QUE OBTENEMOS DE LA BD LA ESTAMOS AÑADIENDO EN UN FLUJO STREAM

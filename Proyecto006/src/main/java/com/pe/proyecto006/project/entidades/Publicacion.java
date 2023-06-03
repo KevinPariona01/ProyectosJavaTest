@@ -1,12 +1,16 @@
 package com.pe.proyecto006.project.entidades;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 //NOMBRE DE LA TABLA
@@ -26,6 +30,10 @@ public class Publicacion {
     
     @Column(name="contenidp", nullable=false)
     private String contenido;
+    
+    //EN UNA PUBLICACION PUEDEN HABER MUCHOS COMENTARIOS, UNA LISTA DE COMENTARIOS
+    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)//CON orphanRemoval CADA VEZ QUE ELIMINEMOS UN VALOR, ESTE ELIMINARA TODOS LOS VALORES ASOCIADOS A EL, ENTONCES SI ELIMINAMOS UNA PUBLICACION SE ELIMINA ESA LISTA DE COMENTARIOS QUE ESTA CON ETE ID
+    private Set<Comentario> comentarios = new HashSet<>();
 
     public Long getId() {
         return id;

@@ -11,7 +11,7 @@ public interface ComentarioServicio {
     //TRAER COMENTARIOS POR PUBLICACION
     public List<ComentarioDTO> obtenerComentarioPorPublicacionId(long publicacionId);
     
-    public ComentarioDTO obtenerComentarioPorId(Long publicacionId, Long comentarioId );
+    public ComentarioDTO obtenerComentariPorId(Long publicacionId, Long comentarioId );
     
     public ComentarioDTO actualizarComentario(Long publicacionId, ComentarioDTO solicitudComentario);
     

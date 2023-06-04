@@ -8,7 +8,6 @@ import com.pe.proyecto006.project.repositorio.PublicacionRepositorio;
 import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,9 +19,6 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class PublicacionServiceImp implements PublicacionServicio {
-    
-    @Autowired
-    private ModelMapper modelMapper;
     
     //CON ESTA ESTA NOTACION REALIZO LA INYECCION DE LA DEPENDENCIA DE MANERA AUTOMATICA
     //BUSCARA SUS METODOS GET AND SET Y ESTO EVITA INICIALIZARLA EN EL CONSTRUCTOR AQUI
@@ -128,31 +124,24 @@ public class PublicacionServiceImp implements PublicacionServicio {
         publicacionRepositorio.delete(publicacion);
     }
     
-    //CONVIERTE ENTIDAD LA PUBLICACION A DTO
+    //CONVIERTE ENTIDAD A DTO 
     private PublicacionDTO mapearDTO(Publicacion publicacion){
-        
-        //CON ESTO MAPEAMOAMOS CON EL MODEL MAPPER A LA CLASE PublicacionDTO
-        PublicacionDTO publicacionDTO = modelMapper.map(publicacion, PublicacionDTO.class);
-        
-        /*PublicacionDTO publicacionDTO = new PublicacionDTO();
+        PublicacionDTO publicacionDTO = new PublicacionDTO();
         publicacionDTO.setId(publicacion.getId());
         publicacionDTO.setTitulo(publicacion.getTitulo());
         publicacionDTO.setDescripcion(publicacion.getDescripcion());
-        publicacionDTO.setContenido(publicacion.getContenido());*/
+        publicacionDTO.setContenido(publicacion.getContenido());
         
         return publicacionDTO;
     }
     
     //CONVIERTE DTO A ENTIDAD
     private Publicacion mapearEntidad(PublicacionDTO publicacionDTO){
-            
-        //CON ESTO MAPEAMOAMOS CON EL MODEL MAPPER A LA CLASE Publicacion
-        Publicacion publicacion = modelMapper.map(publicacionDTO, Publicacion.class);
         
-        /*Publicacion publicacion = new Publicacion();
-        publicacion.setTitulo(publicacionDTO.getTitulo());
-        publicacion.setDescripcion(publicacionDTO.getDescripcion());
-        publicacion.setContenido(publicacionDTO.getContenido());/*/
+           Publicacion publicacion = new Publicacion();
+           publicacion.setTitulo(publicacionDTO.getTitulo());
+           publicacion.setDescripcion(publicacionDTO.getDescripcion());
+           publicacion.setContenido(publicacionDTO.getContenido());
            
         
         return publicacion;

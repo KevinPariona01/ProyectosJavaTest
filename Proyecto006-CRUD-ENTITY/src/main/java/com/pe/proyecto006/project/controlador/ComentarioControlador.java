@@ -41,7 +41,7 @@ public class ComentarioControlador {
     //http://localhost:8080/api/publicaciones/6/comentarios/1
     @GetMapping("/publicaciones/{publicacionId}/comentarios/{comentarioId}")
     public ResponseEntity<ComentarioDTO> obtenerComentariPorId(@PathVariable(value="publicacionId") long publicacionId, @PathVariable(value="comentarioId") long comentarioId){
-        ComentarioDTO comentarioDTO = comentarioServicio.obtenerComentarioPorId(publicacionId, comentarioId);
+        ComentarioDTO comentarioDTO = comentarioServicio.obtenerComentariPorId(publicacionId, comentarioId);
          return new ResponseEntity<>(comentarioDTO, HttpStatus.OK);
     }
     

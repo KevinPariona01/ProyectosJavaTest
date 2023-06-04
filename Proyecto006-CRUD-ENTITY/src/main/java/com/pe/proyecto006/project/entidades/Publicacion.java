@@ -1,6 +1,5 @@
 package com.pe.proyecto006.project.entidades;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -29,13 +28,10 @@ public class Publicacion {
     @Column(name="descripcion", nullable=false)
     private String descripcion;
     
-    @Column(name="contenido", nullable=false)
+    @Column(name="contenidp", nullable=false)
     private String contenido;
     
     //EN UNA PUBLICACION PUEDEN HABER MUCHOS COMENTARIOS, UNA LISTA DE COMENTARIOS
-    //ROMPE LA RECURSION INFINITA, IGNORA LA SERIALIZACION Y AHI ES LO QUE HAY ERROR CUANDO NO SE LLAMA ESTA NOTACION
-    //ESTO OCURRE NORMALMENTE EN 
-    @JsonBackReference//!!!!IMPORTANTE PARA JOINS
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, orphanRemoval = true)//CON orphanRemoval CADA VEZ QUE ELIMINEMOS UN VALOR, ESTE ELIMINARA TODOS LOS VALORES ASOCIADOS A EL, ENTONCES SI ELIMINAMOS UNA PUBLICACION SE ELIMINA ESA LISTA DE COMENTARIOS QUE ESTA CON ETE ID
     private Set<Comentario> comentarios = new HashSet<>();
 
@@ -70,24 +66,12 @@ public class Publicacion {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
-
-    public Set<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(Set<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-    
-    
-
     
     public Publicacion(){
-        super();
+        
     }
 
     public Publicacion(Long id, String titulo, String descripcion, String contenido) {
-        super();
         this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;

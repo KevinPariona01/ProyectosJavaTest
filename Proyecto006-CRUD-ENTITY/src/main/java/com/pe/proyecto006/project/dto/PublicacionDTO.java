@@ -1,26 +1,11 @@
 package com.pe.proyecto006.project.dto;
 
-import com.pe.proyecto006.project.entidades.Comentario;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Size;
-import java.util.Set;
-
 public class PublicacionDTO {
 
-    //VALIDACIONES A LOS CAMPOS
-    //PARA ESTO SE USA LA DEPENDENCIA DE VALIDACIONES spring-boot-starter-validation
     private Long id;
-    
-    @NotEmpty
-    @Size(min = 2, message= "El titulo debe tener al menos dos caracteres")
     private String titulo;
-    @NotEmpty
-    @Size(min = 10, message= "La descripcion deberia tener al menos 10 caracteres")
     private String descripcion;
-    @NotEmpty
     private String contenido;
-    
-    private Set<Comentario> comentarios;
 
     public Long getId() {
         return id;
@@ -53,16 +38,6 @@ public class PublicacionDTO {
     public void setContenido(String contenido) {
         this.contenido = contenido;
     }
-
-    public Set<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(Set<Comentario> comentarios) {
-        this.comentarios = comentarios;
-    }
-    
-    
     
     public PublicacionDTO(){
         

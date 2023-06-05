@@ -79,8 +79,8 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
     
-    public static void main(String[] args){
+    /*public static void main(String[] args){
         System.out.println("Contra2: " + new BCryptPasswordEncoder().encode("pass"));
-    }
+    }*/
     
 }

@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.pe.proyecto006.project.repositorio;
 
 import com.pe.proyecto006.project.entidades.Publicacion;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**
@@ -13,6 +10,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface PublicacionRepositorio extends JpaRepository<Publicacion, Long> {
     
-       
+       Optional<Publicacion> findOneByTitulo(String titulo);
     
 }

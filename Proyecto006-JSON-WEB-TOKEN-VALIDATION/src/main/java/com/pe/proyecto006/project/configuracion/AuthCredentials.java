@@ -10,5 +10,4 @@ public class AuthCredentials {
     private String password;
     
     
-    
 }

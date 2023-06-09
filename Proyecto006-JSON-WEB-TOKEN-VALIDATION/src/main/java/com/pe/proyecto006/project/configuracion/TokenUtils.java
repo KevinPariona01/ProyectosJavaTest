@@ -4,18 +4,22 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
+@Slf4j
 public class TokenUtils {
     
     private final static String ACCESS_TOKEN_SECRET = "4qhq8LrEBfYcaRHxhdb9zURb2rf8e7Ud";
     private final static Long ACCESS_TOKEN_VALIDITY_SECONDS = 2_592_000L;//TIEMPO DE VIDA DEL TOKEN EN SEGUNDOS
     
     public static String createToken(String username){
+        log.info("11");
         long expirationTime  = ACCESS_TOKEN_VALIDITY_SECONDS * 1_000;
         Date expirationDate = new Date(System.currentTimeMillis() + expirationTime );
         Map<String, Object> extra = new HashMap<>();
@@ -33,6 +37,7 @@ public class TokenUtils {
     
     //ACA VA A RECIBIR EL TOKEN QUE EL CLIENTE VA A ENVIAR Y VA A REVISAR SI ES VALIDO
     public static UsernamePasswordAuthenticationToken getAuthentication(String token){
+        log.info("USANDO TOKEN");
         try{
             Claims claims = Jwts.parserBuilder()
                 .setSigningKey(ACCESS_TOKEN_SECRET.getBytes())
